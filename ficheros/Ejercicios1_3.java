@@ -81,14 +81,23 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 
 	}
 	
-	/*3/4/5
-	 * escribefrases: Escríbe  todas las líneas  la vez con write de la clase Files.
-
+	/*
+	 * Ejercicio4
+	 * Refactoriza el método escribefrases para escribir las líneas sin buffer, utilizando OutputStream.
 	 */
 	@Override
 	public void escribefrases(List<String> cadenas, Path ruta) {
-		try {
-			Files.write(ruta, cadenas);
+		 
+		 try {
+			 
+			 	FileOutputStream oos = new FileOutputStream((new File(ruta.toString())));
+			 	
+			 	for (String frases : cadenas) {
+			 		frases+= "\n";
+					oos.write(frases.getBytes());
+				}
+				
+				oos.close();
 			
 		} catch (Exception e) {
 			// TODO: handle exception
