@@ -50,7 +50,6 @@ public interface PokemonDAO {
 	 */
 	public void escribirPokemon(String ruta, String name, int life, int atack, int defense, int specialAttack, int specialdefense, int speed);
 	
-	
 	/**
 	 * Imprime por pantalla el contenido del fichero csv con los pokemon de la forma:
 	 * Name: <Nombre>
