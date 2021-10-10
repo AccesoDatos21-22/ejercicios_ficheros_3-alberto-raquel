@@ -20,6 +20,7 @@ import modelo.Alumno;
 import modelo.Pokemon;
 
 
+
 public class PokemonDAOImp implements PokemonDAO {
 
 	private List<Pokemon> pokemones;
@@ -173,7 +174,21 @@ List<Pokemon> arrayPokemon = new ArrayList<Pokemon>();
 	 */
   @Override
 	public List<Pokemon> leerPokemon(String ruta, String nombre){
-	
-    return null;
+	  List <Pokemon> arrayPok = leerPokemon (ruta);
+		 
+		 List <Pokemon> buscarnombre = new ArrayList<Pokemon>();
+		 
+		 System.out.println();
+		 System.out.println("Pokemons acabados en: " + nombre);
+		 for (Pokemon pokemon : arrayPok) {
+			 String aux = pokemon.toString();
+			 String [] cortarpokemon = aux.split(";");
+			 if (cortarpokemon[0].endsWith(nombre)) {
+				buscarnombre.add(pokemon);
+				System.out.println(pokemon);
+			}
+		}
+		 	
+	    return buscarnombre;
   }
 }

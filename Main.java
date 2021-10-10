@@ -48,6 +48,9 @@ public class Main {
 		//Ejercicio 14
 		pokemon1.leerPokemon("binario.dat");
 		
+		//Ejercicio 15
+		pokemon1.leerPokemon("binario.dat", "saur");
+		
 		sc.close();
 		
 	}
