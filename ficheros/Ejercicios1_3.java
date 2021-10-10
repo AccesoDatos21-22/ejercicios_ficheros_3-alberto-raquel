@@ -21,6 +21,7 @@ import java.util.Scanner;
 import interfaces.InterfazEjercicios1_3;
 
 
+
 /**
  * 
  * @author Escribe_aqui_tu_nombre
@@ -37,9 +38,19 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 	
 	@Override
 	public List<String> getFrases(Scanner sc) {
+		ArrayList<String> frases = new ArrayList<String>();
+		System.out.println("Introduce frases en el fichero");
+		System.out.println("Cuantas frases quieres introducir?");
+		int numfrases = sc.nextInt();
+		sc.nextLine();
 		
+		for (int i = 0; i < numfrases; i++) {
+			System.out.println("Frase " + (i+1));
+			String frase = sc.nextLine();
+			frases.add(frase);
+		}
 		
-		return null;
+		return frases;
 	}
 
 	/* getNombre: Preguntará al usuario por el nombre del fichero donde se escribirán las frases 
@@ -47,9 +58,27 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 	 
 	@Override
 	public Path getNombre(Scanner escaner) {
+		System.out.println("¿Cuál es el nombre del fichero? (Sin poner .txt)");
+		String nombre = escaner.nextLine();
+		String ruta = nombre + ".txt";
+		Path path = null;
+				
+		try {
+			
+			path = Paths.get(ruta);
+			
+			if (Files.exists(path)) {
+				System.out.println("El fichero existe, trabajaremos con él");
+			} else {
+				System.out.println("El fichero no existe");
+				path = null;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
-		
-		return null;
+		return path;
+
 	}
 	
 	/*3/4/5
@@ -58,7 +87,12 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 	 */
 	@Override
 	public void escribefrases(List<String> cadenas, Path ruta) {
-		
+		try {
+			Files.write(ruta, cadenas);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
 

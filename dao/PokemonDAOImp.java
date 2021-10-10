@@ -95,33 +95,6 @@ public class PokemonDAOImp implements PokemonDAO {
 	@Override
 	public void escribirPokemon(String ruta, Pokemon pokemon){
 	
-		//Actualizamos el arraylist
-		if (pokemones.contains(pokemon)) {
-			System.out.println("El pokemon ya está en el fichero");
-		}
-		else {
-			pokemones.add(pokemon);
-		}
-				
-		//Actualizamos el fichero 
-		
-		try {
-			
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta));
-			
-			for (Pokemon pokemon2 : pokemones) {
-				oos.writeObject(pokemon2);
-				
-				//Saco por pantalla los pokemon del arraylist
-				//System.out.println(pokemon2);
-			}
-			
-			oos.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
 		
 	}
 	
@@ -133,38 +106,9 @@ public class PokemonDAOImp implements PokemonDAO {
 	 */
 	@Override
 	public List<Pokemon> leerPokemon(String ruta){
-		
-List<Pokemon> arrayPokemon = new ArrayList<Pokemon>();
-		
-		try {
-			
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta));
-			
-			// Se lee el primer objeto
-			Object pok = ois.readObject();
-			           
-			// Mientras haya objetos
-			while (pok!=null)
-			{
-			    if (pok instanceof Pokemon)
-			        System.out.println(pok);  // Se escribe en pantalla el objeto
-				    arrayPokemon.add((Pokemon) pok);	
-				    pok = ois.readObject();
-			    	
-			}
-			
-			ois.close();
-			
-		} catch (Exception e) {
-			
-		}
-		
-		/*System.out.println("Array: ");
-		for (Pokemon pokemonnn : arrayPokemon) {
-			System.out.println(pokemonnn);
-		}*/
 
-    return arrayPokemon;
+
+    return null;
  
   }
 	/*
@@ -174,21 +118,7 @@ List<Pokemon> arrayPokemon = new ArrayList<Pokemon>();
 	 */
   @Override
 	public List<Pokemon> leerPokemon(String ruta, String nombre){
-	  List <Pokemon> arrayPok = leerPokemon (ruta);
-		 
-		 List <Pokemon> buscarnombre = new ArrayList<Pokemon>();
-		 
-		 System.out.println();
-		 System.out.println("Pokemons acabados en: " + nombre);
-		 for (Pokemon pokemon : arrayPok) {
-			 String aux = pokemon.toString();
-			 String [] cortarpokemon = aux.split(";");
-			 if (cortarpokemon[0].endsWith(nombre)) {
-				buscarnombre.add(pokemon);
-				System.out.println(pokemon);
-			}
-		}
-		 	
-	    return buscarnombre;
+	  
+	    return null;
   }
 }

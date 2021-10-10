@@ -16,40 +16,28 @@ public class Main {
 		
 		Scanner sc = new Scanner(System.in);
 		
-	//Me creo un fichero binario para los ejercicios del 12 al 15
-		
+		//Fichero del ejercicio3
 		try {
-			String ruta = "binario.dat";
-			File binario = new File(ruta);
-			binario.createNewFile();
-			
+			Path fichero = Files.createFile(Paths.get("fichero.txt"));
+						
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-
-		PokemonDAOImp pokemon1 = new PokemonDAOImp(1);// porque le paso 1 pokemon
-	
-		// Me creo pokemons para lo ejercicios del 12 al 15
 		
-		Pokemon pokemon2 = new Pokemon("Ivysaur", 405 , 62, 63, 80, 80, 80);
 		
-		Pokemon pokemon3 = new Pokemon("Venusaur", 525, 82, 83, 100, 100, 80);
+		//Prueba de ejercicio 3
 		
-		Pokemon pokemon4 = new Pokemon("Charmander", 309, 52, 43, 60, 50, 65);
+		Ejercicios1_3 ejer = new Ejercicios1_3();
 		
-		// Los añado al List
-		pokemon1.add(pokemon2);
-		pokemon1.add(pokemon3);
-		pokemon1.add(pokemon4);
+		System.out.println("Ejercicio 3");
+			
+		Path path = ejer.getNombre(sc);
 		
-		//Ejercicio 13
-		pokemon1.escribirPokemon("binario.dat", pokemon2);
+		System.out.println();
+				
+		List<String> frases = ejer.getFrases(sc);
 		
-		//Ejercicio 14
-		pokemon1.leerPokemon("binario.dat");
-		
-		//Ejercicio 15
-		pokemon1.leerPokemon("binario.dat", "saur");
+		ejer.escribefrases(frases, path);
 		
 		sc.close();
 		
