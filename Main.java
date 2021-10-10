@@ -45,6 +45,8 @@ public class Main {
 		//Ejercicio 13
 		pokemon1.escribirPokemon("binario.dat", pokemon2);
 		
+		//Ejercicio 14
+		pokemon1.leerPokemon("binario.dat");
 		
 		sc.close();
 		

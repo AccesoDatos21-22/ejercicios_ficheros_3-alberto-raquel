@@ -19,6 +19,7 @@ import java.util.Scanner;
 import modelo.Alumno;
 import modelo.Pokemon;
 
+
 public class PokemonDAOImp implements PokemonDAO {
 
 	private List<Pokemon> pokemones;
@@ -132,8 +133,38 @@ public class PokemonDAOImp implements PokemonDAO {
 	@Override
 	public List<Pokemon> leerPokemon(String ruta){
 		
+List<Pokemon> arrayPokemon = new ArrayList<Pokemon>();
 		
-    return null;
+		try {
+			
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta));
+			
+			// Se lee el primer objeto
+			Object pok = ois.readObject();
+			           
+			// Mientras haya objetos
+			while (pok!=null)
+			{
+			    if (pok instanceof Pokemon)
+			        System.out.println(pok);  // Se escribe en pantalla el objeto
+				    arrayPokemon.add((Pokemon) pok);	
+				    pok = ois.readObject();
+			    	
+			}
+			
+			ois.close();
+			
+		} catch (Exception e) {
+			
+		}
+		
+		/*System.out.println("Array: ");
+		for (Pokemon pokemonnn : arrayPokemon) {
+			System.out.println(pokemonnn);
+		}*/
+
+    return arrayPokemon;
+ 
   }
 	/*
 	 * Escriba un método leerPokemon  que reciba en una cadena y un archivo que almacena pokemons y 
