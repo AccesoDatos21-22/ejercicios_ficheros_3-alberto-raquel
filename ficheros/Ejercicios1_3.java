@@ -22,6 +22,7 @@ import interfaces.InterfazEjercicios1_3;
 
 
 
+
 /**
  * 
  * @author Escribe_aqui_tu_nombre
@@ -82,26 +83,25 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 	}
 	
 	/*
-	 * Ejercicio4
-	 * Refactoriza el método escribefrases para escribir las líneas sin buffer, utilizando OutputStream.
+	 * Ejercicio5
+	 * Refactoriza el método escribefrases pero ahora escribiendo las líneas una a una con BufferedWriter
 	 */
 	@Override
 	public void escribefrases(List<String> cadenas, Path ruta) {
 		 
-		 try {
+		try {
+			 BufferedWriter bw = new BufferedWriter(new FileWriter(ruta.toString()));
 			 
-			 	FileOutputStream oos = new FileOutputStream((new File(ruta.toString())));
-			 	
-			 	for (String frases : cadenas) {
-			 		frases+= "\n";
-					oos.write(frases.getBytes());
-				}
-				
-				oos.close();
-			
+			 for (int i = 0; i < cadenas.size(); i++) {
+				bw.write(cadenas.get(i) + "\n");
+			 }
+			 
+			 bw.close();
+			 
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	
 		
 	}
 
