@@ -61,12 +61,26 @@ public class Main {
 		Pokemon pokemon2= new Pokemon(ruta, "Ivisaur",90, 60, 62, 63, 80, 80, 60);
 		
 		
-		System.out.println("---------- EJERCICIO 1 ----------" + "\n");
 		
-		pok1.escribirPokemon(ruta, "Bulbasur",80, 45, 49, 49, 65, 65, 45);
 		
-		System.out.println("---------- EJERCICIO 2 ----------" + "\n");
-		pok1.imprimirPokemon(ruta);
+		System.out.println("---------- EJERCICIO 9 ----------" + "\n");
+		
+		String ruta2=("ficheroflotante.dat");
+		
+		float num=(float) 7.45;
+		
+		ej.escribirFlotante(num, ruta2);
+		
+		System.out.println("El número flotante se ha añadido con éxito" + "\n");
+		
+		System.out.println("---------- EJERCICIO 10 ----------" + "\n");
+		
+		ej.imprimirFlotante(ruta2);
+		
+		
+		System.out.println("---------- EJERCICIO 11 ----------" + "\n");
+		
+		ej.leerFlotante(ruta2);
 		
 		
 		

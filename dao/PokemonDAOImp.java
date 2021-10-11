@@ -161,7 +161,33 @@ public class PokemonDAOImp implements PokemonDAO {
 			    } 
   }
 	
+	@Override
+	public void escribirPokemon(String ruta){
+		
+		File fichero = new File(ruta);
+			    
+				try {    
 	
+					ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(fichero));
+					
+					oos.writeObject(pokemones.toString());
+					
+					
+					oos.close();
+					
+					System.out.println(pokemones.toString());
+	
+			    }
+			    catch (FileNotFoundException e) {
+			        System.err.println("Fichero no encontrado");
+			        e.printStackTrace();
+			    }        
+			    catch (IOException e) {
+			        
+			        e.printStackTrace();
+			    } 		
+
+  }
 	
 	@Override
 	public List<Pokemon> leerPokemon(String ruta){
