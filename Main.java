@@ -46,6 +46,7 @@ public class Main {
 	}
 	
 	
+	
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
@@ -62,25 +63,35 @@ public class Main {
 		
 		
 		
+		System.out.println("---------- EJERCICIO 16 ----------" + "\n");
 		
-		System.out.println("---------- EJERCICIO 9 ----------" + "\n");
+		System.out.println("¿Cuántos alumnos caben en el aula?");
+		int tamano= sc.nextInt();
 		
-		String ruta2=("ficheroflotante.dat");
+		AulaDAOImp prueba= new AulaDAOImp(tamano);
 		
-		float num=(float) 7.45;
+		System.out.println("¿Cuántos alumnos desea añadir?");
+		int numalumnos= sc.nextInt();
 		
-		ej.escribirFlotante(num, ruta2);
+		for (int i = 0; i < numalumnos; i++) {
+			if (prueba.estaVacio()) {
+				prueba.add(crear(sc));
+			}
+			
+			if (prueba.estaLLeno()) {
+				System.out.println("La clase está llena");
+			} else {
+				prueba.add(crear(sc));
+			}
+		}
 		
-		System.out.println("El número flotante se ha añadido con éxito" + "\n");
+		Path ficheroalumnos= Paths.get("Alumnos.txt");
 		
-		System.out.println("---------- EJERCICIO 10 ----------" + "\n");
+		prueba.escribeAlumnos(ficheroalumnos);
 		
-		ej.imprimirFlotante(ruta2);
+		System.out.println("Datos de los alumnos" + "\n");
 		
-		
-		System.out.println("---------- EJERCICIO 11 ----------" + "\n");
-		
-		ej.leerFlotante(ruta2);
+		prueba.leeAlumnos(ficheroalumnos);
 		
 		
 		

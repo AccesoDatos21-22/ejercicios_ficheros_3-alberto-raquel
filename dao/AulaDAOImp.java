@@ -117,27 +117,7 @@ public class AulaDAOImp implements AulaDAO{
 		
 	}
 	
-	public void escribeAlumnos2(Path ruta) {
-		
-		try {
-			
-			BufferedWriter bw= Files.newBufferedWriter(ruta);
-			
-			for (Alumno alum : alumnos) {
-				
-				bw.write(alum.toString());
-				
-				bw.newLine();
-		
-			}
-			
-			bw.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+	
 
 	/**
 	 * Método que lee alumnos de un archivo y los muestra por pantalla
@@ -159,17 +139,6 @@ public class AulaDAOImp implements AulaDAO{
 		}
 	}
 	
-	public void leeAlumnos2(Path ruta) {
-
-		try  {
-			
-			List<String> fichero= Files.readAllLines(ruta);
-			
-			System.out.println(fichero);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 }

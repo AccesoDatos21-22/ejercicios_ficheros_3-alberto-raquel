@@ -32,7 +32,61 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 
 	
 	
+	@Override
+	public List <String> getFrases(Scanner sc) {
+		
+		List <String> listafrases= new ArrayList<String>();
+		
+		try {
 	
+			System.out.println("¿Cuántas frases quieres escribir?");
+			int numfrases= sc.nextInt();
+			String frases;
+			sc.nextLine();
+			for (int i = 0; i < numfrases; i++) {
+				System.out.println("Escriba la frase número " + (i+1) + ": ");
+				frases= sc.nextLine();
+				listafrases.add(frases);
+			}
+
+	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listafrases;
+	}
+
+	@Override
+	public Path getNombre(Scanner sc) {
+		
+		System.out.println("Introduzca el nombre del fichero (sin el .txt) al que desea acceder para escribir frases");
+		Path consulta= Paths.get((sc.nextLine()) + ".txt");
+
+		return consulta;
+	}
+	
+	@Override
+	public void escribefrases(List<String> cadenas, Path ruta) {
+		
+		try {
+			
+			Files.write(ruta, cadenas);
+			
+			System.out.println("Las frases se han añadido al fichero con éxito");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void leerFrases(Path ruta) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 	@Override
