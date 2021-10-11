@@ -23,6 +23,7 @@ import interfaces.InterfazEjercicios1_3;
 
 
 
+
 /**
  * 
  * @author Escribe_aqui_tu_nombre
@@ -89,20 +90,6 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 	@Override
 	public void escribefrases(List<String> cadenas, Path ruta) {
 		 
-		try {
-			 BufferedWriter bw = new BufferedWriter(new FileWriter(ruta.toString()));
-			 
-			 for (int i = 0; i < cadenas.size(); i++) {
-				bw.write(cadenas.get(i) + "\n");
-			 }
-			 
-			 bw.close();
-			 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	
-		
 	}
 
 
@@ -115,9 +102,46 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 	
 	 public void escribefrases(Path ruta) {
 		 
+		 Scanner sc = new Scanner(System.in);
+		 
+		 Charset charset = Charset.forName("UTF-8");
+		 
+		 OpenOption[] append = new OpenOption[1];
+		 append[0] = StandardOpenOption.APPEND;
+
+		 try (BufferedWriter bw = Files.newBufferedWriter(ruta, charset, append)) {
+		
+			 System.out.println("Introduce frases en el fichero");
+				System.out.println("Cuantas frases quieres introducir?");
+				int numfrases = sc.nextInt();
+				sc.nextLine();
+				
+		           
+				for (int i = 0; i < numfrases; i++) {
+					System.out.println("Frase " + (i+1));
+					String frase = sc.nextLine();
+					bw.append(frase + "\n");	
+				}
+							
+			sc.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}		
+			 
 			 
 	}
 	
+	 /*Ejercicio7
+	  * ¿Cuál de las 4 soluciones anteriores piensas que es la más eficiente?
+	  * la última, la del ejercicio 6, ya que con el uso de append
+	  * lo que hacemos es añadir las frases al final del fichero
+	  * sin sobreescribir información.
+	  */
+	 
+	 
+	 
+	 
+	 
 	 /*Ejercicio8
 	  * Implementa el método leerFrases para que después de escribir el archivo con las frases, 
 	  * se lea y se muestre por pantalla el contenido.

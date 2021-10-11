@@ -34,10 +34,8 @@ public class Main {
 		Path path = ejer.getNombre(sc);
 		
 		System.out.println();
-				
-		List<String> frases = ejer.getFrases(sc);
 		
-		ejer.escribefrases(frases, path);
+		ejer.escribefrases(path);
 		
 		sc.close();
 		
