@@ -1,8 +1,19 @@
 package dao;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 
 import modelo.Alumno;
 import modelo.Pokemon;
@@ -36,7 +47,12 @@ public class PokemonDAOImp implements PokemonDAO {
 
 	@Override
 	public void add(Pokemon pokemon) {
-
+		
+		if (pokemones.contains(pokemon)) {
+			System.out.println("El pokemon ya está en la lista");
+		} else {
+			pokemones.add(pokemon);
+		}
   }
 
 
@@ -47,23 +63,110 @@ public class PokemonDAOImp implements PokemonDAO {
 
 
 	@Override
-	public void escribirPokemon(String ruta, String name, int life, int atack, int defense, int specialAttack, int specialdefense, int speed){
+	public void escribirPokemon(String ruta, String name, int level, int life, int atack, int defense, int specialAttack, int specialdefense, int speed){
+		
+		
+		Pokemon pokemon1= new Pokemon(ruta, "Bulbasur", 80, 45, 49, 49, 65, 65, 45);
+		
+		File fichero = new File(ruta);
+			    
+				try {    
+			       
+					if (fichero.exists()) {
+						
+						BufferedWriter bw= new BufferedWriter(new FileWriter(fichero));
+						
+						
+						bw.write(pokemon1.toString());
+						bw.newLine();
+						
+						System.out.println(pokemon1.toString());
+						bw.close();
+						
+					} else {
+						
+						fichero.createNewFile();
+						
+						BufferedWriter bw= new BufferedWriter(new FileWriter(fichero));
+						
+						bw.write(pokemon1.toString());
+						bw.newLine();
+						
+						System.out.println(pokemon1.toString());
+						bw.close();
+					}
 
+			    }
+			    catch (FileNotFoundException e) {
+			        System.err.println("Fichero no encontrado");
+			        e.printStackTrace();
+			    }        
+			    catch (IOException e) {
+			        
+			        e.printStackTrace();
+			    } 		
   }
 	
 	
 	@Override
 	public void imprimirPokemon (String ruta){
+				
+		
+		File fichero = new File(ruta);
+			    
+				try {    
+			       
+					if (fichero.exists()) {
+						
+						BufferedReader br= new BufferedReader(new FileReader(fichero));
+						
+						Scanner sc = new Scanner(fichero);
+						
+						while (sc.hasNext()) {
+							String linea = (String) sc.next();
+							
+							String [] separar= linea.split(";");
+							
+							System.out.println("Name: " + separar[0]); 
+							System.out.println("HP: " + separar[1]);
+							System.out.println("Attack: " + separar[2]);
+							System.out.println("Defense: " +  separar[3]);
+							System.out.println("Special Attack: " + separar[4]);
+							System.out.println("Special Defense: " + separar[5]);
+							System.out.println("Speed: " + separar[6]);
+							
+						}
+	
+						br.close();
+						
+						sc.close();
+						
+					} else {
+						
+						fichero.createNewFile();
+						
+						BufferedReader br= new BufferedReader(new FileReader(fichero));
 
+						br.close();
+					}
+
+			    }
+			    catch (FileNotFoundException e) {
+			        System.err.println("Fichero no encontrado");
+			        e.printStackTrace();
+			    }        
+			    catch (IOException e) {
+			        
+			        e.printStackTrace();
+			    } 
   }
 	
-	@Override
-	public void escribirPokemon(String ruta, Pokemon pokemon){
-
-  }
+	
 	
 	@Override
 	public List<Pokemon> leerPokemon(String ruta){
+		
+		
     return null;
   }
 

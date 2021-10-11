@@ -1,5 +1,11 @@
 package dao;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import modelo.Pokemon;
@@ -48,8 +54,12 @@ public interface PokemonDAO {
 	 *	
 	 * @param ruta fichero de texto
 	 */
-	public void escribirPokemon(String ruta, String name, int life, int atack, int defense, int specialAttack, int specialdefense, int speed);
+	public void escribirPokemon(String ruta, String name, int level, int life, int atack, int defense, int specialAttack, int specialdefense, int speed); 
+		
+		
 	
+		
+		
 	
 	/**
 	 * Imprime por pantalla el contenido del fichero csv con los pokemon de la forma:
@@ -75,7 +85,7 @@ public interface PokemonDAO {
 	 *	
 	 * @param ruta fichero de texto
 	 */
-	public void escribirPokemon(String ruta, Pokemon pokemon);
+	public void escribirPokemon(String ruta);
 	
 	/**
 	 * devuelve una lista de objetos pokemon del fichero.
@@ -91,6 +101,12 @@ public interface PokemonDAO {
 	 * @return
 	 */
 	public List<Pokemon> leerPokemon(String ruta, String nombre);
+
+
+
+
+
+	
 	
 	
 
