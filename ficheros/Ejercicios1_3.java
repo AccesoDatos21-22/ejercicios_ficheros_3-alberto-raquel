@@ -24,6 +24,7 @@ import interfaces.InterfazEjercicios1_3;
 
 
 
+
 /**
  * 
  * @author Escribe_aqui_tu_nombre
@@ -150,6 +151,24 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 	@Override
 	public void leerFrases(Path ruta) {
 		// TODO Auto-generated method stub
+		
+		String linea;
+		
+
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader(ruta.toString()));
+				
+			while ((linea = br.readLine()) != null) {
+				System.out.println(linea);
+				
+			}
+			
+			br.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 

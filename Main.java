@@ -37,6 +37,10 @@ public class Main {
 		
 		ejer.escribefrases(path);
 		
+		//ejercicio 8
+		
+		ejer.leerFrases(path);
+		
 		sc.close();
 		
 	}
