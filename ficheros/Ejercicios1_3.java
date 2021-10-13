@@ -130,8 +130,6 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 			
 			File ficheroflot=new File(ruta);
 			
-			
-			
 			if (ficheroflot.exists()) {
 				
 				DataInputStream dis= new DataInputStream(new FileInputStream(ficheroflot));

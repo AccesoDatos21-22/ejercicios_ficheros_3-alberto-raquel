@@ -45,55 +45,70 @@ public class Main {
 		return alumno1;
 	}
 	
-	
+	public static Alumno crear1(Scanner sc) {
+
+		System.out.println("Introduzca los datos del alumno.");
+		sc.nextLine();
+		
+		System.out.println("Nombre del alumno: ");
+		String nombre1= sc.nextLine();
+		
+		
+		System.out.println("Apellidos del alumno: ");
+		String apellido1= sc.nextLine();
+		
+		System.out.println("Año de nacimiento del alumno: ");
+		int anio1= sc.nextInt();
+		sc.nextLine();
+		
+		System.out.println("Dirección del alumno: ");
+		String calle1= sc.nextLine();
+		
+		System.out.println("Número de la calle: ");
+		int num1= sc.nextInt();
+		
+		Alumno alumno2= new Alumno(nombre1, apellido1, anio1, calle1, num1);
+		
+		return alumno2;
+	}
 	
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		PokemonDAOImp pok1= new PokemonDAOImp(1);
-		
-		Ejercicios1_3 ej= new Ejercicios1_3();
-		
-		String ruta= ("ficheropokemon.csv");
-		
-		Pokemon pokemon3= new Pokemon(ruta, "Pikachu",68, 35, 55, 40, 50, 50, 90);
-		
-		Pokemon pokemon2= new Pokemon(ruta, "Ivisaur",90, 60, 62, 63, 80, 80, 60);
 		
 		
 		
-		System.out.println("---------- EJERCICIO 16 ----------" + "\n");
+		
+		System.out.println("---------- EJERCICIO 17 ----------" + "\n");
 		
 		System.out.println("¿Cuántos alumnos caben en el aula?");
-		int tamano= sc.nextInt();
+		int tamano1= sc.nextInt();
 		
-		AulaDAOImp prueba= new AulaDAOImp(tamano);
+		AulaDAOImp prueba1= new AulaDAOImp(tamano1);
 		
 		System.out.println("¿Cuántos alumnos desea añadir?");
-		int numalumnos= sc.nextInt();
+		int numalumnos1= sc.nextInt();
 		
-		for (int i = 0; i < numalumnos; i++) {
-			if (prueba.estaVacio()) {
-				prueba.add(crear(sc));
+		for (int i = 0; i < numalumnos1; i++) {
+			if (prueba1.estaVacio()) {
+				prueba1.add(crear1(sc));
 			}
 			
-			if (prueba.estaLLeno()) {
+			if (prueba1.estaLLeno()) {
 				System.out.println("La clase está llena");
 			} else {
-				prueba.add(crear(sc));
+				prueba1.add(crear1(sc));
 			}
 		}
 		
-		Path ficheroalumnos= Paths.get("Alumnos.txt");
+		Path ficheroalumnos1= Paths.get("Alumnos1.txt");
 		
-		prueba.escribeAlumnos(ficheroalumnos);
+		prueba1.escribeAlumnos2(ficheroalumnos1);
 		
 		System.out.println("Datos de los alumnos" + "\n");
 		
-		prueba.leeAlumnos(ficheroalumnos);
-		
-		
+		prueba1.leeAlumnos2(ficheroalumnos1);
 		
 		sc.close();
 	}
