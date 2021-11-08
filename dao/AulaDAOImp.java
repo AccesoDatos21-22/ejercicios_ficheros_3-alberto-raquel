@@ -6,6 +6,9 @@
 
 package dao;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +63,7 @@ public class AulaDAOImp implements AulaDAO{
 	 */
 	public void add(Alumno alumno) {
 		
+		alumnos.add(alumno);
 	}
 
 	/**
@@ -78,6 +82,11 @@ public class AulaDAOImp implements AulaDAO{
 	 */
 	public void informacionAlumnos() {
 		
+		for (Alumno alum : alumnos) {
+			
+			System.out.println(alum.getNombre() + "\n" + alum.getApellidos() + "\n" + alum.getAnoNacimiento() + "\n"
+					+ alum.getDireccion());
+		}
 	}
 
 	/**
@@ -86,7 +95,48 @@ public class AulaDAOImp implements AulaDAO{
 	 * @param ruta
 	 */
 	public void escribeAlumnos(Path ruta) {
-
+		
+		try {
+			
+			BufferedWriter bw= Files.newBufferedWriter(ruta);
+			
+			for (Alumno alum : alumnos) {
+				
+				bw.write(alum.toString());
+				
+				bw.newLine();
+				
+				
+			}
+			
+			bw.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void escribeAlumnos2(Path ruta) {
+		
+		try {
+			
+			BufferedWriter bw= Files.newBufferedWriter(ruta);
+			
+			for (Alumno alum : alumnos) {
+				
+				bw.write(alum.toString());
+				
+				bw.newLine();
+		
+			}
+			
+			bw.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -96,7 +146,30 @@ public class AulaDAOImp implements AulaDAO{
 	 */
 	public void leeAlumnos(Path ruta) {
 
+		try (BufferedReader br= Files.newBufferedReader(ruta)) {
+			
+			String linea;
+			
+			while ((linea=br.readLine())!=null) {
+				System.out.println(linea);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void leeAlumnos2(Path ruta) {
 
+		try  {
+			
+			List<String> fichero= Files.readAllLines(ruta);
+			
+			System.out.println(fichero);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
