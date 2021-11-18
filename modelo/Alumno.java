@@ -19,6 +19,7 @@ public class Alumno {
 	private String apellidos;
 	private int anoNacimiento;
 	private Direccion direccion;
+	
 
 	/**
 	 * Constructor con todos los par√°metros
@@ -39,6 +40,10 @@ public class Alumno {
 		this.anoNacimiento = anoNacimiento;
 
 	}
+	
+	
+
+
 
 	/**
 	 * Constructor copia
@@ -110,6 +115,8 @@ public class Alumno {
 	public String getNombre() {
 		return nombre;
 	}
+	
+	
 
 	/**
 	 *
@@ -125,8 +132,8 @@ public class Alumno {
 	 */
 	public String toString() {
 		return "El alumno se llama:" + getNombre() + " " + getApellidos()
-				+ "\tNaci√≥ en el a√±o:" + getAnoNacimiento()
-				+ "\tVive en la calle:" + getDireccion();
+				+ "\tnaciÛ en el aÒo:" + getAnoNacimiento()
+				+ "\ty vive en la calle:" + getDireccion();
 
 	}
 

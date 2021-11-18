@@ -1,12 +1,15 @@
 package dao;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -16,10 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
+
 import modelo.Alumno;
 import modelo.Pokemon;
-
-
 
 public class PokemonDAOImp implements PokemonDAO {
 
@@ -50,12 +53,13 @@ public class PokemonDAOImp implements PokemonDAO {
 
 	@Override
 	public void add(Pokemon pokemon) {
+
 		if (pokemones.contains(pokemon)) {
-			System.out.println("El pokemon ya existe");
-		}else {
+			System.out.println("El pokemon ya estï¿½ en la lista");
+		} else {
 			pokemones.add(pokemon);
 		}
-	}
+  }
 
 
   @Override
@@ -64,61 +68,114 @@ public class PokemonDAOImp implements PokemonDAO {
   }
 
 
-  //Ejercicio1
 	@Override
-	public void escribirPokemon(String ruta, String name, int life, int atack, int defense, int specialAttack, int specialdefense, int speed){
-		
-	
+	public void escribirPokemon(String ruta, String name, int level, int life, int atack, int defense, int specialAttack, int specialdefense, int speed){
+
+
+		Pokemon pokemon1= new Pokemon(ruta, "Bulbasur", 80, 45, 49, 49, 65, 65, 45);
+
+		File fichero = new File(ruta);
+
+				try {
+
+					if (fichero.exists()) {
+
+						BufferedWriter bw= new BufferedWriter(new FileWriter(fichero));
+
+
+						bw.write(pokemon1.toString());
+						bw.newLine();
+
+						System.out.println(pokemon1.toString());
+						bw.close();
+
+					} else {
+
+						fichero.createNewFile();
+
+						BufferedWriter bw= new BufferedWriter(new FileWriter(fichero));
+
+						bw.write(pokemon1.toString());
+						bw.newLine();
+
+						System.out.println(pokemon1.toString());
+						bw.close();
+					}
+
+			    }
+			    catch (FileNotFoundException e) {
+			        System.err.println("Fichero no encontrado");
+			        e.printStackTrace();
+			    }
+			    catch (IOException e) {
+
+			        e.printStackTrace();
+			    }
   }
 	
 	
-	//Ejercicio2
 	@Override
 	public void imprimirPokemon (String ruta){
-		
-	/*Name: <Nombre>
-	 level: <nivel>
-	 HP: <Vida>
-	 attack: <Vida>
-	 defense: <defensa>
-	 Special attack: <Ataque Especial>
-	 Special defense: <Defensa Especial>
-	 speed: <velocidad>*/
-		
 
+
+		File fichero = new File(ruta);
+
+				try {
+
+					if (fichero.exists()) {
+
+						BufferedReader br= new BufferedReader(new FileReader(fichero));
+
+						Scanner sc = new Scanner(fichero);
+
+						while (sc.hasNext()) {
+							String linea = (String) sc.next();
+
+							String [] separar= linea.split(";");
+
+							System.out.println("Name: " + separar[0]);
+							System.out.println("HP: " + separar[1]);
+							System.out.println("Attack: " + separar[2]);
+							System.out.println("Defense: " +  separar[3]);
+							System.out.println("Special Attack: " + separar[4]);
+							System.out.println("Special Defense: " + separar[5]);
+							System.out.println("Speed: " + separar[6]);
+
+						}
+	
+						br.close();
+
+						sc.close();
+
+					} else {
+
+						fichero.createNewFile();
+
+						BufferedReader br= new BufferedReader(new FileReader(fichero));
+
+						br.close();
+					}
+
+			    }
+			    catch (FileNotFoundException e) {
+			        System.err.println("Fichero no encontrado");
+			        e.printStackTrace();
+			    }
+			    catch (IOException e) {
+
+			        e.printStackTrace();
+			    }
   }
+
+
 	
-	/*
-	 * Escriba un método llamado escribirPokemon que reciba un objeto de tipo Pokemon y 
-	 * si este no está en el fichero, que lo guarde al final de un archivo pasado también por parámetro.
-	 */
-	@Override
-	public void escribirPokemon(String ruta, Pokemon pokemon){
-	
-		
-	}
-	
-	
-	
-	
-	/*14
-	 * Escriba un método leerPokemon reciba un archivo que almacena pokemons y que devuelva una lista de objetos pokemon.
-	 */
 	@Override
 	public List<Pokemon> leerPokemon(String ruta){
-
-
     return null;
- 
   }
-	/*
-	 * Escriba un método leerPokemon  que reciba en una cadena y un archivo que almacena pokemons y 
-	 * que devuelva una lista de objetos pokemon que contengan esa cadena en el nombre. Por ejemplo “saur” 
-	 * debería de devolver a Bulbasaur, Ivysaur, Venusaur y Mega Venusaur
-	 */
+
   @Override
 	public List<Pokemon> leerPokemon(String ruta, String nombre){
-	  
-	    return null;
+    return null;
   }
 }
