@@ -45,7 +45,34 @@ public class Main {
 		return alumno1;
 	}
 	
+	public static Alumno crear1(Scanner sc) {
+
+		System.out.println("Introduzca los datos del alumno.");
+		sc.nextLine();
+
+		System.out.println("Nombre del alumno: ");
+		String nombre1= sc.nextLine();
+
+
+		System.out.println("Apellidos del alumno: ");
+		String apellido1= sc.nextLine();
+
+		System.out.println("A�o de nacimiento del alumno: ");
+		int anio1= sc.nextInt();
+		sc.nextLine();
+
+		System.out.println("Direcci�n del alumno: ");
+		String calle1= sc.nextLine();
+
+		System.out.println("N�mero de la calle: ");
+		int num1= sc.nextInt();
+
+		Alumno alumno2= new Alumno(nombre1, apellido1, anio1, calle1, num1);
+
+		return alumno2;
+	}
 	
+
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
@@ -95,12 +122,23 @@ public class Main {
 
 		System.out.println("---------- EJERCICIO 16 ----------" + "\n");
 
+		System.out.println("---------- EJERCICIO 17 ----------" + "\n");
+
 		System.out.println("�Cu�ntos alumnos caben en el aula?");
+		int tamano1= sc.nextInt();
+
+		AulaDAOImp prueba1= new AulaDAOImp(tamano1);
+		
 		int tamano= sc.nextInt();
 
 		AulaDAOImp prueba= new AulaDAOImp(tamano);
 
 		System.out.println("�Cu�ntos alumnos desea a�adir?");
+		int numalumnos1= sc.nextInt();
+
+		for (int i = 0; i < numalumnos1; i++) {
+			if (prueba1.estaVacio()) {
+				prueba1.add(crear1(sc));
 		int numalumnos= sc.nextInt();
 
 		for (int i = 0; i < numalumnos; i++) {
@@ -109,9 +147,11 @@ public class Main {
 			}
 
 			if (prueba.estaLLeno()) {
+
+			if (prueba1.estaLLeno()) {
 				System.out.println("La clase est� llena");
 			} else {
-				prueba.add(crear(sc));
+				prueba1.add(crear1(sc));
 			}
 		}
 
@@ -119,13 +159,20 @@ public class Main {
 
 		prueba.escribeAlumnos(ficheroalumnos);
 
+
+		Path ficheroalumnos1= Paths.get("Alumnos1.txt");
+
+		prueba1.escribeAlumnos2(ficheroalumnos1);
+
 		System.out.println("Datos de los alumnos" + "\n");
 
 		prueba.leeAlumnos(ficheroalumnos);
 
 
 
-		
+
+		prueba1.leeAlumnos2(ficheroalumnos1);
+
 		sc.close();
 	}
 	
