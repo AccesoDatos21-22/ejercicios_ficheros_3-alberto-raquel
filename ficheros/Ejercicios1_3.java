@@ -8,12 +8,17 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,23 +39,23 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 	
 	@Override
 	public List <String> getFrases(Scanner sc) {
-		
+
 		List <String> listafrases= new ArrayList<String>();
-		
+
 		try {
-	
-			System.out.println("¿Cuántas frases quieres escribir?");
+
+			System.out.println("ï¿½Cuï¿½ntas frases quieres escribir?");
 			int numfrases= sc.nextInt();
 			String frases;
 			sc.nextLine();
 			for (int i = 0; i < numfrases; i++) {
-				System.out.println("Escriba la frase número " + (i+1) + ": ");
+				System.out.println("Escriba la frase nï¿½mero " + (i+1) + ": ");
 				frases= sc.nextLine();
 				listafrases.add(frases);
 			}
 
-	
-			
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -59,32 +64,32 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 
 	@Override
 	public Path getNombre(Scanner sc) {
-		
+
 		System.out.println("Introduzca el nombre del fichero (sin el .txt) al que desea acceder para escribir frases");
 		Path consulta= Paths.get((sc.nextLine()) + ".txt");
 
 		return consulta;
 	}
-	
+
 	@Override
 	public void escribefrases(List<String> cadenas, Path ruta) {
-		
+
 		try {
-			
+
 			Files.write(ruta, cadenas);
-			
-			System.out.println("Las frases se han añadido al fichero con éxito");
-			
+
+			System.out.println("Las frases se han aï¿½adido al fichero con ï¿½xito");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
 	public void leerFrases(Path ruta) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 

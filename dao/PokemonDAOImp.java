@@ -8,7 +8,15 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +57,7 @@ public class PokemonDAOImp implements PokemonDAO {
 	public void add(Pokemon pokemon) {
 		
 		if (pokemones.contains(pokemon)) {
-			System.out.println("El pokemon ya está en la lista");
+			System.out.println("El pokemon ya estï¿½ en la lista");
 		} else {
 			pokemones.add(pokemon);
 		}
@@ -163,29 +171,29 @@ public class PokemonDAOImp implements PokemonDAO {
 	
 	@Override
 	public void escribirPokemon(String ruta){
-		
+
 		File fichero = new File(ruta);
-			    
-				try {    
-	
+
+				try {
+
 					ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(fichero));
-					
+
 					oos.writeObject(pokemones.toString());
-					
-					
+
+
 					oos.close();
-					
+
 					System.out.println(pokemones.toString());
-	
+
 			    }
 			    catch (FileNotFoundException e) {
 			        System.err.println("Fichero no encontrado");
 			        e.printStackTrace();
-			    }        
+			    }
 			    catch (IOException e) {
-			        
+
 			        e.printStackTrace();
-			    } 		
+			    }
 
   }
 	

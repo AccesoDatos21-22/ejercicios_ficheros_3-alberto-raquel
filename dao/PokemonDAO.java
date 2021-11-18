@@ -54,12 +54,8 @@ public interface PokemonDAO {
 	 *	
 	 * @param ruta fichero de texto
 	 */
-	public void escribirPokemon(String ruta, String name, int level, int life, int atack, int defense, int specialAttack, int specialdefense, int speed); 
-		
-		
+	public void escribirPokemon(String ruta, String name, int life, int atack, int defense, int specialAttack, int specialdefense, int speed);
 	
-		
-		
 	
 	/**
 	 * Imprime por pantalla el contenido del fichero csv con los pokemon de la forma:
@@ -85,7 +81,7 @@ public interface PokemonDAO {
 	 *	
 	 * @param ruta fichero de texto
 	 */
-	public void escribirPokemon(String ruta);
+	public void escribirPokemon(String ruta, Pokemon pokemon);
 	
 	/**
 	 * devuelve una lista de objetos pokemon del fichero.
@@ -101,12 +97,6 @@ public interface PokemonDAO {
 	 * @return
 	 */
 	public List<Pokemon> leerPokemon(String ruta, String nombre);
-
-
-
-
-
-	
 	
 	
 

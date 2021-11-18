@@ -30,14 +30,14 @@ public class Main {
 		System.out.println("Apellidos del alumno: ");
 		String apellido= sc.nextLine();
 		
-		System.out.println("Año de nacimiento del alumno: ");
+		System.out.println("Aï¿½o de nacimiento del alumno: ");
 		int anio= sc.nextInt();
 		sc.nextLine();
 		
-		System.out.println("Dirección del alumno: ");
+		System.out.println("Direcciï¿½n del alumno: ");
 		String calle= sc.nextLine();
 		
-		System.out.println("Número de la calle: ");
+		System.out.println("Nï¿½mero de la calle: ");
 		int num= sc.nextInt();
 		
 		Alumno alumno1= new Alumno(nombre, apellido, anio, calle, num);
@@ -46,54 +46,85 @@ public class Main {
 	}
 	
 	
-	
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		PokemonDAOImp pok1= new PokemonDAOImp(1);
-		
-		Ejercicios1_3 ej= new Ejercicios1_3();
-		
-		String ruta= ("ficheropokemon.csv");
+		//Fichero del ejercicio3
+		try {
+			Path fichero = Files.createFile(Paths.get("fichero.txt"));
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 		
 		Pokemon pokemon3= new Pokemon(ruta, "Pikachu",68, 35, 55, 40, 50, 50, 90);
 		
-		Pokemon pokemon2= new Pokemon(ruta, "Ivisaur",90, 60, 62, 63, 80, 80, 60);
+		Ejercicios1_3 ejer = new Ejercicios1_3();
 		
-		
-		
+		System.out.println("Ejercicio 3");
+
+		Path path = ejer.getNombre(sc);
+
+
+
+		System.out.println();
+
+		ejer.escribefrases(path);
+		System.out.println("---------- EJERCICIO 9 ----------" + "\n");
+
+		String ruta2=("ficheroflotante.dat");
+
+		float num=(float) 7.45;
+
+		ej.escribirFlotante(num, ruta2);
+
+		System.out.println("El nï¿½mero flotante se ha aï¿½adido con ï¿½xito" + "\n");
+
+		System.out.println("---------- EJERCICIO 10 ----------" + "\n");
+
+		ej.imprimirFlotante(ruta2);
+
+
+		System.out.println("---------- EJERCICIO 11 ----------" + "\n");
+
+		ej.leerFlotante(ruta2);
+
+
+
 		System.out.println("---------- EJERCICIO 16 ----------" + "\n");
-		
-		System.out.println("¿Cuántos alumnos caben en el aula?");
+
+		System.out.println("ï¿½Cuï¿½ntos alumnos caben en el aula?");
 		int tamano= sc.nextInt();
-		
+
 		AulaDAOImp prueba= new AulaDAOImp(tamano);
-		
-		System.out.println("¿Cuántos alumnos desea añadir?");
+
+		System.out.println("ï¿½Cuï¿½ntos alumnos desea aï¿½adir?");
 		int numalumnos= sc.nextInt();
-		
+
 		for (int i = 0; i < numalumnos; i++) {
 			if (prueba.estaVacio()) {
 				prueba.add(crear(sc));
 			}
-			
+
 			if (prueba.estaLLeno()) {
-				System.out.println("La clase está llena");
+				System.out.println("La clase estï¿½ llena");
 			} else {
 				prueba.add(crear(sc));
 			}
 		}
-		
+
 		Path ficheroalumnos= Paths.get("Alumnos.txt");
-		
+
 		prueba.escribeAlumnos(ficheroalumnos);
-		
+
 		System.out.println("Datos de los alumnos" + "\n");
-		
+
 		prueba.leeAlumnos(ficheroalumnos);
-		
-		
+
+
+
 		
 		sc.close();
 	}
