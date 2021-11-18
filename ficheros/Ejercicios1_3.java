@@ -22,6 +22,7 @@ import interfaces.InterfazEjercicios1_3;
 
 
 
+
 /**
  * 
  * @author Escribe_aqui_tu_nombre
@@ -82,24 +83,25 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 	}
 	
 	/*
-	 * Ejercicio4
-	 * Refactoriza el m�todo escribefrases para escribir las l�neas sin buffer, utilizando OutputStream.
+	 * Ejercicio5
+	 * Refactoriza el m�todo escribefrases pero ahora escribiendo las l�neas una a una con BufferedWriter
 	 */
 	@Override
 	public void escribefrases(List<String> cadenas, Path ruta) {
 		 
 		try {
 			 BufferedWriter bw = new BufferedWriter(new FileWriter(ruta.toString()));
-
+			 
 			 for (int i = 0; i < cadenas.size(); i++) {
 				bw.write(cadenas.get(i) + "\n");
 			 }
-
+			 
 			 bw.close();
-
+			 
 		} catch (Exception e) {
-			e.printStackTrace();
+			// TODO: handle exception
 		}
+	
 		
 	}
 
@@ -113,9 +115,46 @@ public class Ejercicios1_3 implements InterfazEjercicios1_3 {
 	
 	 public void escribefrases(Path ruta) {
 		 
-			 
+		 Scanner sc = new Scanner(System.in);
+
+		 Charset charset = Charset.forName("UTF-8");
+
+		 OpenOption[] append = new OpenOption[1];
+		 append[0] = StandardOpenOption.APPEND;
+
+		 try (BufferedWriter bw = Files.newBufferedWriter(ruta, charset, append)) {
+
+			 System.out.println("Introduce frases en el fichero");
+				System.out.println("Cuantas frases quieres introducir?");
+				int numfrases = sc.nextInt();
+				sc.nextLine();
+
+
+				for (int i = 0; i < numfrases; i++) {
+					System.out.println("Frase " + (i+1));
+					String frase = sc.nextLine();
+					bw.append(frase + "\n");
+				}
+
+			sc.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+
 	}
 	
+	 /*Ejercicio7
+	  * �Cu�l de las 4 soluciones anteriores piensas que es la m�s eficiente?
+	  * la �ltima, la del ejercicio 6, ya que con el uso de append
+	  * lo que hacemos es a�adir las frases al final del fichero
+	  * sin sobreescribir informaci�n.
+	  */
+
+
+
+
+
 	 /*Ejercicio8
 	  * Implementa el m�todo leerFrases para que despu�s de escribir el archivo con las frases, 
 	  * se lea y se muestre por pantalla el contenido.
