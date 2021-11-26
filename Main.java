@@ -121,6 +121,36 @@ public class Main {
 
 
 		System.out.println("---------- EJERCICIO 16 ----------" + "\n");
+		
+		System.out.println("¿Cuántos alumnos caben en el aula?");
+		int tamano= sc.nextInt();
+		
+		AulaDAOImp prueba= new AulaDAOImp(tamano);
+		
+		System.out.println("¿Cuántos alumnos desea añadir?");
+		int numalumnos= sc.nextInt();
+		
+		for (int i = 0; i < numalumnos; i++) {
+			if (prueba.estaVacio()) {
+				prueba.add(crear(sc));
+			}
+			
+			if (prueba.estaLLeno()) {
+				System.out.println("La clase está llena");
+			} else {
+				prueba.add(crear(sc));
+			}
+		}
+		
+		Path ficheroalumnos= Paths.get("Alumnos.txt");
+		
+		prueba.escribeAlumnos(ficheroalumnos);
+		
+		System.out.println("Datos de los alumnos" + "\n");
+		
+		prueba.leeAlumnos(ficheroalumnos);
+		
+		sc.close();
 
 		System.out.println("---------- EJERCICIO 17 ----------" + "\n");
 
@@ -167,8 +197,6 @@ public class Main {
 		System.out.println("Datos de los alumnos" + "\n");
 
 		prueba.leeAlumnos(ficheroalumnos);
-
-
 
 
 		prueba1.leeAlumnos2(ficheroalumnos1);
