@@ -94,7 +94,11 @@ public class Main {
 
 		Path path = ejer.getNombre(sc);
 
-
+		//ejercicio 8
+		
+		ejer.leerFrases(path);
+		
+		sc.close();
 
 		System.out.println();
 
